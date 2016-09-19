@@ -1,0 +1,37 @@
+{
+  "Redmine": {
+    "name": "Redmine",
+    "title": "Redmine",
+    "extends": "Contact",
+    "style": "Inline",
+    "collapse_display": "0",
+    "help_pre": "",
+    "help_post": "",
+    "weight": "2",
+    "is_active": "1",
+    "table_name": "civicrm_value_redmine",
+    "is_multiple": "0",
+    "collapse_adv_display": "0",
+    "created_date": "2016-09-19 18:56:49",
+    "is_reserved": "0",
+    "fields": {
+      "Redmine_Project": {
+        "name": "Redmine_Project",
+        "label": "Redmine Projeect",
+        "data_type": "String",
+        "html_type": "Text",
+        "is_required": "0",
+        "is_searchable": "0",
+        "is_search_range": "0",
+        "weight": "2",
+        "is_active": "1",
+        "is_view": "0",
+        "text_length": "255",
+        "note_columns": "60",
+        "note_rows": "4",
+        "column_name": "projectname",
+        "in_selector": "0"
+      }
+    }
+  }
+}
