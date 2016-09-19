@@ -117,11 +117,11 @@ function _redmine_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
  * @return CRM_redmine_Upgrader
  */
 function _redmine_civix_upgrader() {
-  if (!file_exists(__DIR__.'/CRM/redmine/Upgrader.php')) {
+  if (!file_exists(__DIR__.'/CRM/Redmine/Upgrader.php')) {
     return NULL;
   }
   else {
-    return CRM_redmine_Upgrader_Base::instance();
+    return CRM_Redmine_Upgrader_Base::instance();
   }
 }
 

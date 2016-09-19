@@ -17,7 +17,7 @@
     "fields": {
       "Redmine_Project": {
         "name": "Redmine_Project",
-        "label": "Redmine Projeect",
+        "label": "Redmine Project",
         "data_type": "String",
         "html_type": "Text",
         "is_required": "0",
