@@ -139,6 +139,19 @@ function redmine_civicrm_pre($op, $objectName, $id, &$params){
 
 }
 
+function redmine_civicrm_tabs( &$tabs, $contactID ){
+    $url = CRM_Utils_System::url( 'civicrm/contact/view/redmine-issues',
+        "cid=$contactID&snippet=1" );
+
+    //Count number of documents
+
+    $tabs[] = array( 'id'    => 'contact_redmine',
+        'url'   => $url,
+        'count' => 0,
+        'title' => ts('Redmime'),
+        'weight' => 1 );
+}
+
 function redmine_civicrm_tabset($tabsetName, &$tabs, $context) {
     if ($tabsetName == 'civicrm/contact/view') {
         $contactId = $context['contact_id'];
