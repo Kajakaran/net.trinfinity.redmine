@@ -67,7 +67,7 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
             }
         }
         catch (Exception $e){
-            CRM_Core_Error::debug_log_message("error ".$wd);
+            CRM_Core_Error::debug_log_message("error ".$e->getMessage(). $wd);
         }
     }
 }
