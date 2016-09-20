@@ -142,10 +142,9 @@ function redmine_civicrm_pre($op, $objectName, $id, &$params){
 function redmine_civicrm_tabset($tabsetName, &$tabs, $context) {
     if ($tabsetName == 'civicrm/contact/view') {
         $contactId = $context['contact_id'];
-        $url = CRM_Utils_System::url( 'civicrm/contact/view/redmineissues',
+        $url = CRM_Utils_System::url( 'civicrm/contact/view/redmine-issues',
             "reset=1&snippet=1&force=1&cid=$contactId" );
         $tabs[] = array( 'id'    => 'Redmine',
-            'url'   => $url,
             'title' => 'Redmine Issues',
             'weight' => 300,
         );
