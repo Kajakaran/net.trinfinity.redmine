@@ -15,6 +15,7 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
       global $civicrm_setting;
       $baseurl = CIVICRM_REDMINE_BASE_URL;
       $key= CIVICRM_REDMINE_KEY;
+        print $baseurl. " ".$key;
       $json = file_get_contents($baseurl.'?key='.$key.'&project_id=92');
       $issues = json_decode($json);
 
