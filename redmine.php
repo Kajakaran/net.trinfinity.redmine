@@ -147,7 +147,6 @@ function redmine_civicrm_tabs( &$tabs, $contactID ){
 
     $issues = CRM_Redmine_Page_RedmineTab::getRedmineIssues($contactID);
 
-    print_r($issues);
     if ($issues && $issues->total_count) {
         $tabs[] = array('id' => 'contact_redmine',
             'url' => $url,
