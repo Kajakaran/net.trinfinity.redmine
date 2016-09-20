@@ -4,8 +4,8 @@
  */
 return array (
     'redmine_api_key' => array(
-        'group_name' => 'Redmine Preferences',
-        'group' => 'civiredmine',
+        'group_name' => 'CiviCRM Preferences',
+        'group' => 'CiviCRM Preferences',
         'name' => 'civiredmine_api_key',
         'type' => 'String',
         'add' => '4.6',
@@ -21,8 +21,8 @@ return array (
         'quick_form_type' => 'Element',
     ),
     'mailchimp_webhook_base_url' => array(
-        'group_name' => 'Redmine Preferences',
-        'group' => 'civiredmine',
+        'group_name' => 'CiviCRM Preferences',
+        'group' => 'CiviCRM Preferences',
         'name' => 'civiredmine_base_url',
         'type' => 'String',
         'add' => '4.6',
