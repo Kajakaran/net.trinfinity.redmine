@@ -17,12 +17,15 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
       $key = $civicrm_setting['CiviCRM Preferences']['civiredmine_api_key'];
     //  $baseurl = CIVICRM_REDMINE_BASE_URL;
      // $key= CIVICRM_REDMINE_KEY;
+       $projectid = getProjectId($this->_contactId);
 
-      $json = file_get_contents($baseurl.'/issues.json?key='.$key.'&project_id=92');
-      $issues = json_decode($json);
+       if (!is_numeric($projectid)) {
+           $json = file_get_contents($baseurl . '/issues.json?key=' . $key . '&project_id=92');
+           $issues = json_decode($json);
 
-      $this->assign('issues', $issues->issues);
-      $this->assign('redmineurl', $baseurl);
+           $this->assign('issues', $issues->issues);
+           $this->assign('redmineurl', $baseurl);
+       }
 
       parent::run();
   }
@@ -38,5 +41,26 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
         $session = CRM_Core_Session::singleton();
         $userContext = CRM_Utils_System::url('civicrm/contact/view', 'cid='.$this->_contactId.'&selectedChild=contact_redmine&reset=1');
         $session->pushUserContext($userContext);
+    }
+
+    public static function getProjectId($contactId){
+        try {
+            $customfield = civicrm_api3('CustomField', 'getsingle', array(
+                'name' => "Redmine_Project",
+            ));
+            $id = $customfield["id"];
+
+            $project = civicrm_api3('Contact', 'getsingle', array(
+                'id' => $contactId,
+                'return' => 'custom_' . $id
+            ));
+
+            $projectid = $project["custom_" . $id];
+
+            if (is_numeric($projectid)) {
+                return $projectid;
+            }
+        }
+        catch (Exception $e){}
     }
 }
