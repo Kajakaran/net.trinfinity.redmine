@@ -20,6 +20,7 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
       $issues = json_decode($json);
 
       $this->assign('issues', $issues->issues);
+      $this->assign('redmineurl', $baseurl);
 
       parent::run();
   }
