@@ -58,7 +58,7 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
                 'id' => $contactId,
                 'return' => 'custom_' . $id
             ));
-            $wd .= " ".print_r($project);
+            $wd .= " ".print_r($project,true);
             $projectid = $project["custom_" . $id];
 
             $wd .= " ".$projectid;
