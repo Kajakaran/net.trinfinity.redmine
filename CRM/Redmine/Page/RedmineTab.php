@@ -44,13 +44,14 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
     }
 
     public static function getProjectId($contactId){
+        $wd = "start ";
         try {
             $customfield = civicrm_api3('CustomField', 'getsingle', array(
                 'name' => "Redmine_Project",
             ));
             $id = $customfield["id"];
 
-            $wd = $id;
+            $wd .= $id;
 
             $project = civicrm_api3('Contact', 'getsingle', array(
                 'id' => $contactId,
@@ -65,6 +66,8 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
                 return $projectid;
             }
         }
-        catch (Exception $e){}
+        catch (Exception $e){
+            CRM_Core_Error::debug_log_message("error ".$wd);
+        }
     }
 }
