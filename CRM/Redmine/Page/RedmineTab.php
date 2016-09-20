@@ -13,8 +13,10 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
     $this->assign('currentTime', date('Y-m-d H:i:s'));
 
       global $civicrm_setting;
-      $baseurl = CIVICRM_REDMINE_BASE_URL;
-      $key= CIVICRM_REDMINE_KEY;
+      $baseurl = $civicrm_setting['CiviCRM Preferences']['civiredmine_base_url'];
+      $key = $civicrm_setting['CiviCRM Preferences']['civiredmine_api_key'];
+    //  $baseurl = CIVICRM_REDMINE_BASE_URL;
+     // $key= CIVICRM_REDMINE_KEY;
 
       $json = file_get_contents($baseurl.'/issues.json?key='.$key.'&project_id=92');
       $issues = json_decode($json);
