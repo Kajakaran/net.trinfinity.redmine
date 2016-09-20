@@ -145,11 +145,15 @@ function redmine_civicrm_tabs( &$tabs, $contactID ){
 
     //Count number of documents
 
-    $tabs[] = array( 'id'    => 'contact_redmine',
-        'url'   => $url,
-        'count' => 10,
-        'title' => ts('Redmine'),
-        'weight' => 1 );
+    $issues = CRM_Redmine_Page_RedmineTab::getRedmineIssues($contactID);
+
+    if ($issues && $issues->total_count > 0) {
+        $tabs[] = array('id' => 'contact_redmine',
+            'url' => $url,
+            'count' => $issues->total_count,
+            'title' => ts('Redmine'),
+            'weight' => 1);
+    }
 }
 
 function redmine_civicrm_tabset($tabsetName, &$tabs, $context) {
