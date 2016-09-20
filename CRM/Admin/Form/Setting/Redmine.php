@@ -18,5 +18,19 @@ class CRM_Admin_Form_Setting_Redmine extends CRM_Admin_Form_Setting
         'civiredmine_api_key' => CRM_Core_BAO_Setting::SYSTEM_PREFERENCES_NAME,
         'civiredmine_base_url' => CRM_Core_BAO_Setting::SYSTEM_PREFERENCES_NAME
     );
+
+    public function buildQuickForm( )
+    {
+        CRM_Utils_System::setTitle(ts('Settings - Redmine'));
+        $this->addElement('text','civiredmine_api_key', ts('Redmine User API Key'));
+        $this->addElement('text','civiredmine_base_url', ts('Redmine Base URL'));
+        $check = true;
+
+        // redirect to Administer Section After hitting either Save or Cancel button.
+        $session = CRM_Core_Session::singleton( );
+        $session->pushUserContext( CRM_Utils_System::url( 'civicrm/admin', 'reset=1' ) );
+
+        parent::buildQuickForm( $check );
+    }
 }
 
