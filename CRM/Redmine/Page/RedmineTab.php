@@ -15,7 +15,7 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
       $json = file_get_contents('https://projects.trinfinity.net/issues.json?key=0f54d9516187eb8177fdf6e3505a2bfa5dac27fc');
       $issues = json_decode($json);
 
-      $this->assign('issues', $issues["issues"]);
+      $this->assign('issues', $issues->issues);
 
       parent::run();
   }
