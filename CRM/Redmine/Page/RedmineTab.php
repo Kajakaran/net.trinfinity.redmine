@@ -19,8 +19,8 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
      // $key= CIVICRM_REDMINE_KEY;
        $projectid = $this->getProjectId($this->_contactId);
 
-       if (!is_numeric($projectid)) {
-           $json = file_get_contents($baseurl . '/issues.json?key=' . $key . '&project_id=92');
+       if (is_numeric($projectid)) {
+           $json = file_get_contents($baseurl . '/issues.json?key=' . $key . '&project_id='.$projectid);
            $issues = json_decode($json);
 
            $this->assign('issues', $issues->issues);
