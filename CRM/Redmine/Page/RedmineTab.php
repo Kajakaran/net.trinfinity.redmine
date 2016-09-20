@@ -17,7 +17,7 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
       $key = $civicrm_setting['CiviCRM Preferences']['civiredmine_api_key'];
     //  $baseurl = CIVICRM_REDMINE_BASE_URL;
      // $key= CIVICRM_REDMINE_KEY;
-       $projectid = getProjectId($this->_contactId);
+       $projectid = $this->getProjectId($this->_contactId);
 
        if (!is_numeric($projectid)) {
            $json = file_get_contents($baseurl . '/issues.json?key=' . $key . '&project_id=92');
