@@ -48,14 +48,12 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
             $customfield = civicrm_api3('CustomField', 'getsingle', array(
                 'name' => "Redmine_Project",
             ));
-            print_r($customfield);
             $id = $customfield["id"];
 
             $project = civicrm_api3('Contact', 'getsingle', array(
                 'id' => $contactId,
                 'return' => 'custom_' . $id
             ));
-            print_r($project);
             $projectid = $project["custom_" . $id];
 
             if (is_numeric($projectid)) {
