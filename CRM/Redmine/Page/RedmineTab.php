@@ -12,23 +12,19 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
     // Example: Assign a variable for use in a template
     $this->assign('currentTime', date('Y-m-d H:i:s'));
 
-      global $civicrm_setting;
-      $baseurl = $civicrm_setting['CiviCRM Preferences']['civiredmine_base_url'];
-      $key = $civicrm_setting['CiviCRM Preferences']['civiredmine_api_key'];
-    //  $baseurl = CIVICRM_REDMINE_BASE_URL;
-     // $key= CIVICRM_REDMINE_KEY;
-        $this->_contactId = CRM_Utils_Request::retrieve('cid', 'Positive', $this, TRUE);
-       $projectid = $this->getProjectId($this->_contactId);
+    global $civicrm_setting;
+    $baseurl = $civicrm_setting['CiviCRM Preferences']['civiredmine_base_url'];
 
-       if (is_numeric($projectid)) {
-           $json = file_get_contents($baseurl . '/issues.json?key=' . $key . '&project_id='.$projectid);
-           $issues = json_decode($json);
+    $this->_contactId = CRM_Utils_Request::retrieve('cid', 'Positive', $this, TRUE);
+    $issues = $this->getRedmineIssues($this->_contactId);
 
-           $this->assign('issues', $issues->issues);
-           $this->assign('redmineurl', $baseurl);
-       }
+    if ($issues) {
 
-      parent::run();
+       $this->assign('issues', $issues->issues);
+       $this->assign('redmineurl', $baseurl);
+    }
+
+    parent::run();
   }
 
     protected function preProcess() {
@@ -42,6 +38,21 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
         $session = CRM_Core_Session::singleton();
         $userContext = CRM_Utils_System::url('civicrm/contact/view', 'cid='.$this->_contactId.'&selectedChild=contact_redmine&reset=1');
         $session->pushUserContext($userContext);
+    }
+
+    public static function getRedmineIssues($contactId)
+    {
+        $projectid = CRM_Redmine_Page_RedmineTab::getProjectId($contactId);
+        global $civicrm_setting;
+        $baseurl = $civicrm_setting['CiviCRM Preferences']['civiredmine_base_url'];
+        $key = $civicrm_setting['CiviCRM Preferences']['civiredmine_api_key'];
+        if (is_numeric($projectid)) {
+            $json = file_get_contents($baseurl . '/issues.json?key=' . $key . '&project_id=' . $projectid);
+            $issues = json_decode($json);
+        }
+
+        return $issues;
+
     }
 
     public static function getProjectId($contactId){
@@ -62,13 +73,13 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
             $projectid = $project["custom_" . $id];
 
             $wd .= " ".$projectid;
-            CRM_Core_Error::debug_log_message($wd);
+
             if (is_numeric($projectid)) {
                 return $projectid;
             }
         }
         catch (Exception $e){
-            CRM_Core_Error::debug_log_message("error ".$e->getMessage(). $wd);
+
         }
     }
 }
