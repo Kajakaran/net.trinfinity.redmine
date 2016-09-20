@@ -50,12 +50,17 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
             ));
             $id = $customfield["id"];
 
+            $wd = $id;
+
             $project = civicrm_api3('Contact', 'getsingle', array(
                 'id' => $contactId,
                 'return' => 'custom_' . $id
             ));
+            $wd .= " ".print_r($project);
             $projectid = $project["custom_" . $id];
 
+            $wd .= " ".$projectid;
+            CRM_Core_Error::debug_log_message($wd);
             if (is_numeric($projectid)) {
                 return $projectid;
             }
