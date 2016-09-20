@@ -147,8 +147,8 @@ function redmine_civicrm_tabs( &$tabs, $contactID ){
 
     $tabs[] = array( 'id'    => 'contact_redmine',
         'url'   => $url,
-        'count' => 0,
-        'title' => ts('Redmime'),
+        'count' => 10,
+        'title' => ts('Redmine'),
         'weight' => 1 );
 }
 
