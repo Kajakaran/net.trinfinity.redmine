@@ -6,7 +6,7 @@ return array (
     'redmine_api_key' => array(
         'group_name' => 'Redmine Preferences',
         'group' => 'civiredmine',
-        'name' => 'redmine_api_key',
+        'name' => 'civiredmine_api_key',
         'type' => 'String',
         'add' => '4.6',
         'is_domain' => 1,
@@ -23,7 +23,7 @@ return array (
     'mailchimp_webhook_base_url' => array(
         'group_name' => 'Redmine Preferences',
         'group' => 'civiredmine',
-        'name' => 'redmine_base_url',
+        'name' => 'civiredmine_base_url',
         'type' => 'String',
         'add' => '4.6',
         'is_domain' => 1,
