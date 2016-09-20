@@ -12,7 +12,10 @@ class CRM_Redmine_Page_RedmineTab extends CRM_Core_Page {
     // Example: Assign a variable for use in a template
     $this->assign('currentTime', date('Y-m-d H:i:s'));
 
-      $json = file_get_contents('https://projects.trinfinity.net/issues.json?key=0f54d9516187eb8177fdf6e3505a2bfa5dac27fc&project_id=92');
+      global $civicrm_setting;
+      $baseurl = $civicrm_setting['CiviCRM Preferences']['civiredmine_base_url'];
+      $key=$civicrm_setting['CiviCRM Preferences']['civiredmine_api_key'];
+      $json = file_get_contents($baseurl.'?key='.$key.'&project_id=92');
       $issues = json_decode($json);
 
       $this->assign('issues', $issues->issues);
